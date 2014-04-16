@@ -10,7 +10,7 @@ for digit in $digits ; do
 	counts[$digit]=$(echo $source | fgrep -o $digit | wc -l)
 done
 
-sum=$(echo ${counts[@]} | xargs -n 1 | paste -s -d + | bc)
+sum=$(echo ${counts[@]} | xargs -n 1 | paste -s -d + - | bc)
 
 for digit in $digits ; do
 	count=${counts[$digit]}
