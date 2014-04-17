@@ -1,9 +1,16 @@
 #!/bin/bash
 set -e
-text=$(curl --silent http://www.delfi.lt)
-text=$(echo $text | tr '[:upper:]ĄČĘĖĮŠŲŪŽ' '[:lower:]ąčęėįšųūž' | tr -cd '[:lower:]ąčęėįšųūž')
+uppercase=AĄBCČDEĘĖFGHIĮYJKLMNOPRSŠTUŲŪVZŽ
+lowercase=aąbcčdeęėfghiįyjklmnoprsštuųūvzž
+#text=$(curl --silent http://www.delfi.lt)
+text=$(curl --silent http://www.15min.lt)
+text=$(echo $text | tr $uppercase $lowercase | tr -cd $lowercase)
 
-for letter in $(echo aąbcčdeęėfghiįyjklmnoprsštuųūvzž | grep -o . | xargs -n 1) ; do
-	count=$(echo $text | grep -o $letter | wc -l)
-	echo $letter $count
-done
+total=$(echo -n $text | wc -m)
+output=$(
+for letter in $(echo $lowercase | grep -o .) ; do
+	count=$(echo $text | tr -cd $letter | wc -m)
+	percent=$(bc <<< "scale=10; $count / $total * 100")
+	printf "%s %05.2f (%5d/%6d)-" $letter $percent $count $total
+done)
+echo $output | xargs -d- -n 1 | egrep .+ | sort -k2rn
