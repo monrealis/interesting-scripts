@@ -2,8 +2,8 @@
 set -e
 uppercase=AĄBCČDEĘĖFGHIĮYJKLMNOPRSŠTUŲŪVZŽ
 lowercase=aąbcčdeęėfghiįyjklmnoprsštuųūvzž
-#text=$(wget -qO- http://www.delfi.lt)
-text=$(wget -qO- http://www.15min.lt)
+#text=$(wget -qO- --delete-after http://www.delfi.lt)
+text=$(wget -qO- --delete-after http://www.15min.lt)
 text=$(echo $text | tr $uppercase $lowercase | tr -cd $lowercase)
 
 total=$(echo -n $text | wc -m)
