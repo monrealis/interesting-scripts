@@ -14,4 +14,4 @@ END {
         }
         print str
     }
-}' awk/transpose.txt
+}' awk/transpose.txt | column -t
