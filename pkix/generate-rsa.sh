@@ -12,3 +12,4 @@ openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt
 # https://www.openssl.org/docs/apps/req.html
 # https://www.openssl.org/docs/apps/rsa.html
 # https://www.openssl.org/docs/apps/x509.html
+# https://www.sslshopper.com/ssl-converter.html
