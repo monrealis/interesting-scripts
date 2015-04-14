@@ -10,4 +10,4 @@ for index in 0 1; do
     [ -e $file ] || ( curl -s $url -o $file ; sleep 2)
 done
 
-sed -n -r '/414px/,/<[/]table>/ p' kaunas.html
+sed -n -r '/414px/,/<[/]table>/ p' kaunas.html | tidy -asxml -numeric -utf8 -f /dev/null
