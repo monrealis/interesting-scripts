@@ -9,7 +9,11 @@ for index in 0 1; do
     # echo $url $file
     [ -e $file ] || ( curl -s $url -o $file ; sleep 2)
 done
-sed -n -r '/414px/,/<[/]table>/ p' kaunas.html \
-| tidy  --doctype omit -asxml -numeric -utf8 -f /dev/null \
-| xmlstarlet tr remove-ns.xsl \
-| xmlstarlet tr table.xsl
+for name in ${names[@]} ; do
+    echo $name.txt
+    sed -n -r '/414px/,/<[/]table>/ p' $name \
+    | tidy  --doctype omit -asxml -numeric -utf8 -f /dev/null \
+    | xmlstarlet tr remove-ns.xsl \
+    | xmlstarlet tr table.xsl \
+    > $name.txt
+done
