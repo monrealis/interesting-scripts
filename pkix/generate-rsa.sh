@@ -11,6 +11,11 @@ openssl crl2pkcs7 -nocrl -certfile server.crt -out server.p7b
 openssl crl2pkcs7 -nocrl -certfile server.crt -out server.p7b.der -outform der
 openssl pkcs12 -export -out server.p12 -inkey server.key -in server.crt -passout pass:
 
+openssl rsa -in server.key -pubout -outform DER -out server.key.pub
+openssl rsa -in server.key -pubout -outform PEM -out server.key.pub.pem
+openssl pkcs8 -topk8 -nocrypt -in server.key -out server.key.pkcs8 -outform DER
+openssl pkcs8 -topk8 -nocrypt -in server.key -out server.key.pkcs8.pem -outform PEM
+
 # http://www.akadia.com/services/ssh_test_certificate.html
 # https://www.openssl.org/docs/apps/openssl.html
 # https://www.openssl.org/docs/apps/genrsa.html
@@ -20,4 +25,5 @@ openssl pkcs12 -export -out server.p12 -inkey server.key -in server.crt -passout
 # https://www.openssl.org/docs/apps/pkcs12.html
 # https://www.openssl.org/docs/apps/pkcs7.html
 # https://www.openssl.org/docs/apps/crl2pkcs7.html
+# https://www.openssl.org/docs/manmaster/apps/pkcs8.html
 # https://www.sslshopper.com/ssl-converter.html
