@@ -1,0 +1,35 @@
+[req]
+distinguished_name=${ENV::DN}
+prompt=no
+req_extensions     = req_ext
+x509_extensions    = v3_ca
+
+[req_ext]
+subjectAltName = @alt_names
+
+[alt_names]
+DNS.1=localhost
+
+[v3_ca]
+subjectAltName=@alt_names
+
+[c00]
+C=LT
+L=L
+O=O
+CN=C0
+emailAddress=m...@gmail.com
+
+[c01]
+C=LT
+L=L
+O=O
+CN=C1
+emailAddress=m...@gmail.com
+
+[c02]
+C=LT
+L=L
+O=O
+CN=C2
+emailAddress=m...@gmail.com
