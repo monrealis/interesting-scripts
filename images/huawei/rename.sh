@@ -1,6 +1,6 @@
 #!/bin/bash
 
-NAME=$(identify -format "IMG_%[EXIF:DateTime].jpg" 1.jpg | tr -d ':' | tr ' ' '_')
-echo $NAME
+# NAME=$(identify -format "IMG_%[EXIF:DateTime].jpg" 1.jpg | tr -d ':' | tr ' ' '_')
+# TODO
 
-#TODO not implemented
+exiftool "-FileName<CreateDate" -d "IMG_%Y%m%d_%H%M%S.jpg"
